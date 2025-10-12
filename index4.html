@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Reportes - Producción Científica</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="card card-wide" role="main" aria-label="Reportes producción">
+    <img src="https://www.uleam.edu.ec/wp-content/uploads/2012/09/LOGO-ULEAM-VERTICAL.png" alt="ULEAM" class="logo">
+    <h1>Reportes de Producción</h1>
+    <p class="subtitle">Filtre por año, tipo o autor</p>
+
+    <form class="form-group" id="formReporte">
+      <div class="input-group">
+        <label for="anio">Año</label>
+        <select id="anio">
+          <option value="todos">Todos</option>
+          <option>2024</option>
+          <option>2023</option>
+          <option>2022</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="tipoRep">Tipo</label>
+        <select id="tipoRep">
+          <option value="todos">Todos</option>
+          <option>Artículo</option>
+          <option>Libro</option>
+          <option>Proyecto</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="autorRep">Docente/Autor</label>
+        <input id="autorRep" type="text" placeholder="Nombre del autor">
+      </div>
+
+      <div class="input-group" style="margin-top: 24px;">
+        <button class="btn" type="submit">Generar Reporte</button>
+      </div>
+    </form>
+
+    <table class="tabla-usuarios" aria-describedby="tabla-reportes">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Año</th>
+          <th>Tipo</th>
+          <th>Autor</th>
+        </tr>
+      </thead>
+      <tbody id="tablaCuerpo">
+        <!-- Aquí se insertarán los reportes -->
+      </tbody>
+    </table>
+  </div>
+  <script src="script5.js"></script>
+</body>
+</html>

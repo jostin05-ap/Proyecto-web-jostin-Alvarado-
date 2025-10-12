@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Producción Científica ULEAM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <img src="https://www.uleam.edu.ec/wp-content/uploads/2012/09/LOGO-ULEAM-VERTICAL.png" alt="Logo ULEAM" class="logo">
+
+        <form id="registroForm" onsubmit="return validarFormulario()">
+            <h1>Registrar Producción</h1>
+            <p class="subtitle">Complete los datos de la publicación o proyecto</p>
+
+            <div class="input-group">
+                <label for="titulo">Título del trabajo</label>
+                <input id="titulo" type="text" placeholder="Título completo de la publicación" required>
+            </div>
+
+            <div class="input-group">
+                <label for="tipo">Tipo de producción</label>
+                <select id="tipo" required>
+                    <option value="">Seleccione...</option>
+                    <option>Artículo</option>
+                    <option>Libro</option>
+                    <option>Ponencia</option>
+                    <option>Proyecto</option>
+                    <option>Otro</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="fecha">Fecha de publicación</label>
+                <input id="fecha" type="date" required>
+            </div>
+
+            <div class="input-group">
+                <label for="revista">Revista / Fuente</label>
+                <input id="revista" type="text" placeholder="Nombre de la revista o evento" required>
+            </div>
+
+            <div class="input-group">
+                <label for="autores">Autores / Coautores</label>
+                <input id="autores" type="text" placeholder="Apellido Nombre; Apellido Nombre" required>
+            </div>
+
+            <div class="input-group">
+                <label for="archivo">Archivo (PDF)</label>
+                <input id="archivo" type="file" accept=".pdf" required>
+            </div>
+
+            <button type="submit">Guardar Registro</button>
+            <p class="mensaje-error" id="mensajeError"></p>
+        </form>
+    </div>
+
+    <script src="script2.js"></script>
+</body>
+</html>

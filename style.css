@@ -1,0 +1,247 @@
+/* ============================
+   PALETA Y CONFIGURACIÓN BASE
+============================ */
+:root {
+  --bg1: #f3f3f3;
+  --bg2: #dcdcdc;
+  --card: #ffffff;
+  --text: #333333;
+  --primary: #b71c1c; /* rojo institucional ULEAM */
+  --primary-hover: #8e0000;
+  --muted: #9a9a9a;
+  --shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  --radius: 12px;
+  --container-width: 760px;
+}
+
+/* ============================
+   FONDO GENERAL Y TIPOGRAFÍA
+============================ */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, var(--bg1), var(--bg2));
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  color: var(--text);
+  padding: 30px;
+}
+
+/* ============================
+   CONTENEDORES
+============================ */
+.contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.login-container,
+.card {
+  background-color: var(--card);
+  padding: 40px 45px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+  width: 480px; /* centrado y tamaño uniforme */
+}
+
+/* Para páginas amplias (listados, registros, etc.) */
+.card-wide {
+  width: 100%;
+  max-width: var(--container-width);
+  text-align: left;
+  padding: 30px 35px;
+}
+
+/* ============================
+   LOGO ULEAM
+============================ */
+.logo {
+  width: 120px;
+  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================
+   TÍTULOS Y TEXTOS
+============================ */
+h1,
+h2 {
+  font-size: 20px;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 18px;
+  color: var(--text);
+  margin-top: 25px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+
+/* ============================
+   CAMPOS DE FORMULARIO
+============================ */
+.input-group,
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  color: #444;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #f9f9f9;
+  transition: 0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  background-color: #fff;
+}
+
+/* ============================
+   BOTONES
+============================ */
+button,
+.btn {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+button:hover,
+.btn:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Botón secundario */
+.btn.secondary {
+  background: #f5f5f5;
+  color: var(--text);
+  border: 1px solid #ddd;
+}
+
+/* ============================
+   TABLAS
+============================ */
+.tabla-usuarios {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.tabla-usuarios th,
+.tabla-usuarios td {
+  border: 1px solid #e6e6e6;
+  padding: 10px 12px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.tabla-usuarios th {
+  background: var(--primary);
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+.tabla-usuarios tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* ============================
+   ICONOS DE ACCIÓN (EDITAR / ELIMINAR)
+============================ */
+.icono-boton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 5px;
+  font-size: 18px;
+  transition: transform 0.2s ease;
+}
+
+.icono-boton:hover {
+  transform: scale(1.2);
+}
+
+.editar i {
+  color: #1976d2;
+}
+
+.eliminar i {
+  color: #d32f2f;
+}
+
+/* ============================
+   MENSAJE DE ERROR
+============================ */
+.mensaje-error {
+  color: #d32f2f;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+/* ============================
+   RESPONSIVE
+============================ */
+@media (max-width: 720px) {
+  body {
+    padding: 18px;
+  }
+
+  .login-container {
+    width: 100%;
+    padding: 25px;
+  }
+
+  .card-wide {
+    padding: 18px;
+    max-width: 100%;
+  }
+
+  .card {
+    width: 100%;
+    padding: 25px;
+  }
+}
