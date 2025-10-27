@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Producción Científica ULEAM</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <img src="https://www.uleam.edu.ec/wp-content/uploads/2012/09/LOGO-ULEAM-VERTICAL.png" alt="ULEAM" class="logo">
+        <h1>Bienvenido al Sistema de Producción Científica</h1>
+        <p>Seleccione una opción para continuar:</p>
+
+        <div class="menu">
+            <a href="index2.html" class="menu-item">
+                <div class="icon">📝</div>
+                Registro
+            </a>
+
+            <a href="index4.html" class="menu-item">
+                <div class="icon">📊</div>
+                Reportes
+            </a>
+
+            <a href="index3.html" class="menu-item">
+                <div class="icon">👥</div>
+                Usuarios
+            </a>
+
+            <a href="index6.html" class="menu-item">
+                <div class="icon">⚙️</div>
+                Configuración
+            </a>
+
+            <a href="index.html" class="menu-item">
+                <div class="icon">🚪</div>
+                Cerrar sesión
+            </a>
+        </div>
+    </div>
+
+    <!-- SCRIPT PARA MODO OSCURO -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const tema = localStorage.getItem("tema") || "claro";
+            if (tema === "oscuro") {
+                document.body.classList.add("dark-mode");
+            } else {
+                document.body.classList.remove("dark-mode");
+            }
+        });
+    </script>
+</body>
+</html>

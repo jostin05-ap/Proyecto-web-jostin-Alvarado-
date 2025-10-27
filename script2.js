@@ -5,50 +5,64 @@ function validarFormulario() {
     const revista = document.getElementById("revista").value.trim();
     const autores = document.getElementById("autores").value.trim();
     const archivoInput = document.getElementById("archivo");
-    const archivo = archivoInput.files[0]; // Archivo seleccionado
+    const archivo = archivoInput.files[0];
     const mensajeError = document.getElementById("mensajeError");
 
-    // Expresión regular para texto válido (letras, números, espacios y signos básicos)
     const regexTexto = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ.,;:()\- ]+$/;
 
-    // Validar campos vacíos
     if (!titulo || !tipo || !fecha || !revista || !autores || !archivo) {
         mensajeError.textContent = "Todos los campos son obligatorios.";
         return false;
     }
 
-    // Validar campos de texto
-    if (!regexTexto.test(titulo)) {
-        mensajeError.textContent = "El título contiene caracteres inválidos.";
+    if (!regexTexto.test(titulo) || !regexTexto.test(revista) || !regexTexto.test(autores)) {
+        mensajeError.textContent = "Campos contienen caracteres inválidos.";
         return false;
     }
 
-    if (!regexTexto.test(revista)) {
-        mensajeError.textContent = "El nombre de la revista contiene caracteres inválidos.";
-        return false;
-    }
-
-    if (!regexTexto.test(autores)) {
-        mensajeError.textContent = "El campo de autores contiene caracteres inválidos.";
-        return false;
-    }
-
-    // Validar que el archivo sea PDF
     if (archivo.type !== "application/pdf") {
         mensajeError.textContent = "El archivo debe ser un PDF.";
         return false;
     }
 
-    // Validación de fecha (no futura)
     const hoy = new Date().toISOString().split('T')[0];
     if (fecha > hoy) {
         mensajeError.textContent = "La fecha no puede ser futura.";
         return false;
     }
 
-    // Todo correcto
-    mensajeError.textContent = "";
-    alert(`¡Registro guardado correctamente!\nArchivo: ${archivo.name}`);
+    // mantienene el usuario que incio session
+    const usuarioActivo = localStorage.getItem("usuarioActivo") || "Usuario desconocido";
+
+    // 
+    const nuevaProduccion = {
+        id: Date.now().toString(), // ID único
+        titulo,
+        tipo,
+        fecha,
+        revista,
+        autores,
+        archivo: archivo.name, // nombre del archivo
+        subidoPor: usuarioActivo
+    };
+
+    // guarda utilizando localstorage
+    let producciones = JSON.parse(localStorage.getItem("producciones")) || [];
+    producciones.push(nuevaProduccion);
+    localStorage.setItem("producciones", JSON.stringify(producciones));
+
+    alert(`✔️ Registro guardado correctamente\nSubido por: ${usuarioActivo}`);
+
     document.getElementById("registroForm").reset();
-    return false; // Evita recargar la página
+    mensajeError.textContent = "";
+    return false;
 }
+        document.addEventListener("DOMContentLoaded", () => {
+        const tema = localStorage.getItem("tema") || "claro";
+        if (tema === "oscuro") {
+            document.body.classList.add("dark-mode");
+        } else {
+            document.body.classList.remove("dark-mode");
+        }
+        });
+ 

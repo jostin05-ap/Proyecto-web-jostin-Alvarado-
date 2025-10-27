@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario - Producción Científica ULEAM</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div class="login-container">
+        <img src="https://www.uleam.edu.ec/wp-content/uploads/2012/09/LOGO-ULEAM-VERTICAL.png" alt="Logo ULEAM" class="logo">
+
+        <form id="registroForm" onsubmit="return validarRegistro()">
+            <h2>Registro de Usuario</h2>
+
+            <div class="input-group">
+                <label for="cedula">Cédula:</label>
+                <input type="text" id="cedula" name="cedula" placeholder="Ingrese su número de cédula" required>
+            </div>
+
+            <div class="input-group">
+                <label for="nombre">Apellidos y Nombres:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ej. García López Juan" required>
+            </div>
+
+            <div class="input-group">
+                <label for="correo">Correo Institucional:</label>
+                <input type="email" id="correo" name="correo" placeholder="usuario@live.uleam.edu.ec" required>
+            </div>
+
+            <div class="input-group">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" placeholder="Cree una contraseña" required>
+            </div>
+
+            <button type="submit">Registrar Usuario</button>
+            <p class="mensaje-error" id="mensajeError"></p>
+        </form>
+
+        <!-- 🔹 Enlace para volver al inicio de sesión -->
+        <div class="registro-link">
+            <p>¿Ya tienes una cuenta?</p>
+            <a href="index.html" class="btn-volver">Iniciar Sesión</a>
+        </div>
+    </div>
+
+    <script src="script7.js"></script>
+</body>
+</html>

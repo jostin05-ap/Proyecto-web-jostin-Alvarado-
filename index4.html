@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <title>Reportes - Producción Científica</title>
   <link rel="stylesheet" href="style.css">
+  
 </head>
 <body>
   <div class="card card-wide" role="main" aria-label="Reportes producción">
@@ -16,6 +17,7 @@
         <label for="anio">Año</label>
         <select id="anio">
           <option value="todos">Todos</option>
+          <option>2025</option>
           <option>2024</option>
           <option>2023</option>
           <option>2022</option>
@@ -29,12 +31,18 @@
           <option>Artículo</option>
           <option>Libro</option>
           <option>Proyecto</option>
+          <option>Ponencia</option>
         </select>
       </div>
 
       <div class="input-group">
         <label for="autorRep">Docente/Autor</label>
         <input id="autorRep" type="text" placeholder="Nombre del autor">
+      </div>
+
+      <div class="input-group">
+        <label for="tituloRep">Título</label>
+        <input id="tituloRep" type="text" placeholder="Titulo de la producion">
       </div>
 
       <div class="input-group" style="margin-top: 24px;">
@@ -47,16 +55,27 @@
         <tr>
           <th>ID</th>
           <th>Título</th>
-          <th>Año</th>
+          <th>Fecha</th>
           <th>Tipo</th>
           <th>Autor</th>
+          <th>Subido por</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody id="tablaCuerpo">
         <!-- Aquí se insertarán los reportes -->
       </tbody>
     </table>
+
+    <div id="listaReportes"></div>
+
+    <a href="index5.html" class="btn-volver">
+      <i class="fa-solid fa-arrow-left"></i> Volver Al Inicio
+    </a>
+
+    
+
   </div>
-  <script src="script5.js"></script>
+  <script src="script4.js"></script>
 </body>
 </html>

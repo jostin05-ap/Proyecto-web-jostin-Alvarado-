@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configuración - Producción Científica ULEAM</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+</head>
+<body>
+  <div class="login-container">
+    <img src="https://www.uleam.edu.ec/wp-content/uploads/2012/09/LOGO-ULEAM-VERTICAL.png" alt="Logo ULEAM" class="logo">
+
+    <h1>Configuración</h1>
+    <p class="subtitle">Ajustes y preferencias del sistema</p>
+
+    <form id="configForm">
+      <div class="input-group">
+        <label for="notificaciones">Notificaciones por correo</label>
+        <select id="notificaciones">
+          <option value="si">Activadas</option>
+          <option value="no">Desactivadas</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="tema">Tema de la interfaz</label>
+        <select id="tema">
+          <option value="claro">Claro</option>
+          <option value="oscuro">Oscuro</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="vistaReportes">Vista de reportes</label>
+        <select id="vistaReportes">
+          <option value="tabla">Tabla</option>
+          <option value="lista">Lista</option>
+        </select>
+      </div>
+
+      <button type="submit">Guardar Preferencias</button>
+      <p class="mensaje-error" id="mensajeError"></p>
+    </form>
+
+    <a href="index5.html" class="btn-volver">
+      <i class="fa-solid fa-arrow-left"></i> Volver Al Inicio
+    </a>
+  </div>
+
+  <script src="script6.js"></script>
+</body>
+</html>
