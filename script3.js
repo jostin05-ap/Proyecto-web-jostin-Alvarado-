@@ -63,17 +63,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Función para mostrar usuarios
-    function mostrarUsuarios(lista) {
+    function mostrarUsuarios(tabla) {
         tablaCuerpo.innerHTML = "";
-        if (lista.length === 0) {
+        if (tabla.length === 0) {
             tablaCuerpo.innerHTML = '<tr><td colspan="4">No hay usuarios registrados</td></tr>';
             return;
         }
 
-        lista.forEach(usuario => {
+        tabla.forEach(usuario => {
             const fila = document.createElement("tr");
             fila.innerHTML = `
-                <td>${usuario.nombre}</td>
+                <td>${usuario.id}</td>
+                <td>${usuario.nombre}</td>               
                 <td>${usuario.correo}</td>
                 <td>${usuario.cedula}</td>
                 <td>
