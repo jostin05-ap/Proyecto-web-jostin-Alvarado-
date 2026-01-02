@@ -6,49 +6,47 @@
   <title>Configuración - Producción Científica ULEAM</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
 </head>
 <body>
+
+<div id="app">
   <div class="login-container">
-    <img src="https://www.uleam.edu.ec/wp-content/uploads/2012/09/LOGO-ULEAM-VERTICAL.png" alt="Logo ULEAM" class="logo">
+    <img src="https://www.uleam.edu.ec/wp-content/uploads/2012/09/LOGO-ULEAM-VERTICAL.png" class="logo">
 
     <h1>Configuración</h1>
     <p class="subtitle">Ajustes y preferencias del sistema</p>
 
-    <form id="configForm">
-      <div class="input-group">
-        <label for="notificaciones">Notificaciones por correo</label>
-        <select id="notificaciones">
-          <option value="si">Activadas</option>
-          <option value="no">Desactivadas</option>
-        </select>
-      </div>
+    <form @submit.prevent="guardarPreferencias">
 
       <div class="input-group">
-        <label for="tema">Tema de la interfaz</label>
-        <select id="tema">
+        <label>Tema de la interfaz</label>
+        <select v-model="tema">
           <option value="claro">Claro</option>
           <option value="oscuro">Oscuro</option>
         </select>
       </div>
 
       <div class="input-group">
-        <label for="vistaReportes">Vista de reportes</label>
-        <select id="vistaReportes">
+        <label>Vista de reportes</label>
+        <select v-model="vistaReportes">
           <option value="tabla">Tabla</option>
           <option value="lista">Lista</option>
         </select>
       </div>
 
       <button type="submit">Guardar Preferencias</button>
-      <p class="mensaje-error" id="mensajeError"></p>
+      <p class="mensaje-error">{{ mensaje }}</p>
     </form>
 
     <a href="index5.html" class="btn-volver">
       <i class="fa-solid fa-arrow-left"></i> Volver Al Inicio
     </a>
   </div>
+</div>
 
-  <script src="script6.js"></script>
+<!-- Vue -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="script6.js"></script>
+
 </body>
 </html>

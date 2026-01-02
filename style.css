@@ -54,6 +54,14 @@ body {
   width: 720px;
   transition: all var(--transition);
 }
+/* TARJETA SOLO PARA LA VISTA LISTA */
+.card-lista {
+  width: 100%;
+  max-width: 650px;   /* ✅ aquí se achica */
+  margin: 20px auto;
+  padding: 25px;
+  text-align: left;
+}
 
 .card:hover, .login-container:hover, .container:hover {
   box-shadow: var(--shadow-hover);

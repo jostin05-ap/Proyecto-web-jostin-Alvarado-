@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8">
   <title>Reportes - Producción Científica</title>
   <link rel="stylesheet" href="style.css">
-  
 </head>
 <body>
-  <div class="card card-wide" role="main" aria-label="Reportes producción">
-    <img src="https://www.uleam.edu.ec/wp-content/uploads/2012/09/LOGO-ULEAM-VERTICAL.png" alt="ULEAM" class="logo">
+
+<div id="app">
+  <div class="card card-wide">
+    <img src="https://www.uleam.edu.ec/wp-content/uploads/2012/09/LOGO-ULEAM-VERTICAL.png" class="logo">
     <h1>Reportes de Producción</h1>
     <p class="subtitle">Filtre por año, tipo o autor</p>
 
-    <form class="form-group" id="formReporte">
+    <!-- FORMULARIO -->
+    <form class="form-group" @submit.prevent="filtrarReportes">
+
       <div class="input-group">
-        <label for="anio">Año</label>
-        <select id="anio">
+        <label>Año</label>
+        <select v-model="filtros.anio">
           <option value="todos">Todos</option>
           <option>2025</option>
           <option>2024</option>
@@ -25,8 +28,8 @@
       </div>
 
       <div class="input-group">
-        <label for="tipoRep">Tipo</label>
-        <select id="tipoRep">
+        <label>Tipo</label>
+        <select v-model="filtros.tipo">
           <option value="todos">Todos</option>
           <option>Artículo</option>
           <option>Libro</option>
@@ -36,21 +39,20 @@
       </div>
 
       <div class="input-group">
-        <label for="autorRep">Docente/Autor</label>
-        <input id="autorRep" type="text" placeholder="Nombre del autor">
+        <label>Autor</label>
+        <input type="text" v-model="filtros.autor" placeholder="Nombre del autor" >
       </div>
 
       <div class="input-group">
-        <label for="tituloRep">Título</label>
-        <input id="tituloRep" type="text" placeholder="Titulo de la producion">
+        <label>Título</label>
+        <input type="text" v-model="filtros.titulo" placeholder="Titulo de la Producción">
       </div>
 
-      <div class="input-group" style="margin-top: 24px;">
-        <button class="btn" type="submit">Generar Reporte</button>
-      </div>
+      <button class="btn" type="submit">Generar Reporte</button>
     </form>
 
-    <table class="tabla-usuarios" aria-describedby="tabla-reportes">
+    <!-- TABLA -->
+    <table class="tabla-usuarios" v-if="vista === 'tabla'">
       <thead>
         <tr>
           <th>ID</th>
@@ -62,20 +64,45 @@
           <th>Acciones</th>
         </tr>
       </thead>
-      <tbody id="tablaCuerpo">
-        <!-- Aquí se insertarán los reportes -->
+      <tbody>
+        <tr v-if="reportes.length === 0">
+          <td colspan="7">No se encontraron resultados</td>
+        </tr>
+
+        <tr v-for="(p, index) in reportes" :key="index">
+          <td>{{ index + 1 }}</td>
+          <td>{{ p.titulo }}</td>
+          <td>{{ p.fecha }}</td>
+          <td>{{ p.tipo }}</td>
+          <td>{{ p.autores }}</td>
+          <td>{{ p.subidoPor }}</td>
+          <td>
+            <button @click="eliminarReporte(index)">🗑️</button>
+          </td>
+        </tr>
       </tbody>
     </table>
 
-    <div id="listaReportes"></div>
+    <!-- VISTA LISTA -->
+    <div v-if="vista === 'lista'">
+      <div class="card card-lista" v-for="(p, index) in reportes" :key="index">
+        <p><strong>ID:</strong> {{ index + 1 }}</p>
+        <p><strong>Título:</strong> {{ p.titulo }}</p>
+        <p><strong>Fecha:</strong> {{ p.fecha }}</p>
+        <p><strong>Tipo:</strong> {{ p.tipo }}</p>
+        <p><strong>Autor:</strong> {{ p.autores }}</p>
+        <p><strong>Subido por:</strong> {{ p.subidoPor }}</p>
+        <button @click="eliminarReporte(index)">Eliminar</button>
+      </div>
+    </div>
 
-    <a href="index5.html" class="btn-volver">
-      <i class="fa-solid fa-arrow-left"></i> Volver Al Inicio
-    </a>
-
-    
-
+    <a href="index5.html" class="btn-volver">⬅ Volver</a>
   </div>
-  <script src="script4.js"></script>
+</div>
+
+<!-- VUE -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="script4.js"></script>
+
 </body>
 </html>

@@ -4,73 +4,80 @@
     <meta charset="UTF-8">
     <title>Gestión de Usuarios - ULEAM</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Iconos de Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
-    <div class="login-container">
-        <img src="https://www.uleam.edu.ec/wp-content/uploads/2012/09/LOGO-ULEAM-VERTICAL.png" alt="Logo ULEAM" class="logo">
 
-        <h2>Registro de Usuario</h2>
+<div id="app" class="login-container">
 
-        <div class="input-group">
-            <label for="cedula">Cédula:</label>
-            <input type="text" id="cedula" placeholder="Ingrese la cédula">
-        </div>
+    <img src="https://www.uleam.edu.ec/wp-content/uploads/2012/09/LOGO-ULEAM-VERTICAL.png"
+         class="logo">
 
-        <div class="input-group">
-            <label for="nombre">Apellidos y Nombre:</label>
-            <input type="text" id="nombre" placeholder="Ingrese el Apellidos y Nombre">
-        </div>
+    <h2>Registro de Usuario</h2>
 
-        <div class="input-group">
-            <label for="correo">Correo Institucional:</label>
-            <input type="email" id="correo" placeholder="usuario@live.uleam.edu.ec" required> 
-        </div>
-
-        <button id="guardarBtn">Guardar</button>
-
-        
-        <h3>Lista de Usuarios</h3>
-        <table class="tabla-usuarios">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Cédula</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="tablaCuerpo">
-                <tr>
-                    <td>Jostin Alvarado</td>
-                    <td>e1312736810@live.uleam.edu.ec</td>
-                    <td>1234567890</td>
-                    <td>
-                        <button class="icono-boton editar"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="icono-boton eliminar"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>María Gomez</td>
-                    <td>e1213746029@live.uleam.edu.ec</td>
-                    <td>0887654321</td>
-                    <td>
-                        <button class="icono-boton editar"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="icono-boton eliminar"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <a href="index5.html" class="btn-volver">
-      <i class="fa-solid fa-arrow-left"></i> Volver Al Inicio
-    </a>
-    
+    <div class="input-group">
+        <label>Cédula:</label>
+        <input v-model="usuario.cedula" placeholder="Ingrese la Cedula">
     </div>
 
-    <script src="script3.js"></script>
+    <div class="input-group">
+        <label>Apellidos y Nombre:</label>
+        <input v-model="usuario.nombre" placeholder="Ingrese el Apellido y Nombre">
+    </div>
+
+    <div class="input-group">
+        <label>Correo Institucional:</label>
+        <input v-model="usuario.correo" placeholder="Usuario@live.uleam.edu.ec">
+    </div>
+
+    <button @click="guardarUsuario">Guardar</button>
+
+    <h3>Lista de Usuarios</h3>
+
+    <table class="tabla-usuarios">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Cédula</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-if="usuarios.length === 0">
+                <td colspan="5">No hay usuarios registrados</td>
+            </tr>
+
+            <tr v-for="u in usuarios" :key="u.id">
+                <td>{{ u.id }}</td>
+                <td>{{ u.nombre }}</td>
+                <td>{{ u.correo }}</td>
+                <td>{{ u.cedula }}</td>
+                <td>
+                    <button class="icono-boton editar"
+                            @click="editarUsuario(u)">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                    <button class="icono-boton eliminar"
+                            @click="eliminarUsuario(u.id)">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="index5.html" class="btn-volver">
+        <i class="fa-solid fa-arrow-left"></i> Volver al Inicio
+    </a>
+
+</div>
+
+<script src="script3.js"></script>
 </body>
 </html>

@@ -1,68 +1,77 @@
-function validarFormulario() {
-    const titulo = document.getElementById("titulo").value.trim();
-    const tipo = document.getElementById("tipo").value;
-    const fecha = document.getElementById("fecha").value;
-    const revista = document.getElementById("revista").value.trim();
-    const autores = document.getElementById("autores").value.trim();
-    const archivoInput = document.getElementById("archivo");
-    const archivo = archivoInput.files[0];
-    const mensajeError = document.getElementById("mensajeError");
+const { createApp } = Vue;
 
-    const regexTexto = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ.,;:()\- ]+$/;
+createApp({
+    data() {
+        return {
+            titulo: "",
+            tipo: "",
+            fecha: "",
+            revista: "",
+            autores: "",
+            archivo: null,
+            mensajeError: ""
+        };
+    },
+    methods: {
+        capturarArchivo(event) {
+            this.archivo = event.target.files[0];
+        },
 
-    if (!titulo || !tipo || !fecha || !revista || !autores || !archivo) {
-        mensajeError.textContent = "Todos los campos son obligatorios.";
-        return false;
-    }
+        validarFormulario() {
+            const regexTexto = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ.,;:()\- ]+$/;
 
-    if (!regexTexto.test(titulo) || !regexTexto.test(revista) || !regexTexto.test(autores)) {
-        mensajeError.textContent = "Campos contienen caracteres inválidos.";
-        return false;
-    }
+            if (!this.titulo || !this.tipo || !this.fecha || !this.revista || !this.autores || !this.archivo) {
+                this.mensajeError = "Todos los campos son obligatorios.";
+                return;
+            }
 
-    if (archivo.type !== "application/pdf") {
-        mensajeError.textContent = "El archivo debe ser un PDF.";
-        return false;
-    }
+            if (!regexTexto.test(this.titulo) || !regexTexto.test(this.revista) || !regexTexto.test(this.autores)) {
+                this.mensajeError = "Campos contienen caracteres inválidos.";
+                return;
+            }
 
-    const hoy = new Date().toISOString().split('T')[0];
-    if (fecha > hoy) {
-        mensajeError.textContent = "La fecha no puede ser futura.";
-        return false;
-    }
+            if (this.archivo.type !== "application/pdf") {
+                this.mensajeError = "El archivo debe ser un PDF.";
+                return;
+            }
 
-    // mantienene el usuario que incio session
-    const usuarioActivo = localStorage.getItem("usuarioActivo") || "Usuario desconocido";
+            const hoy = new Date().toISOString().split("T")[0];
+            if (this.fecha > hoy) {
+                this.mensajeError = "La fecha no puede ser futura.";
+                return;
+            }
 
-    // 
-    const nuevaProduccion = {
-        id: Date.now().toString(), // ID único
-        titulo,
-        tipo,
-        fecha,
-        revista,
-        autores,
-        archivo: archivo.name, // nombre del archivo
-        subidoPor: usuarioActivo
-    };
+            const usuarioActivo = localStorage.getItem("usuarioActivo") || "Usuario desconocido";
 
-    // guarda utilizando localstorage
-    let producciones = JSON.parse(localStorage.getItem("producciones")) || [];
-    producciones.push(nuevaProduccion);
-    localStorage.setItem("producciones", JSON.stringify(producciones));
+            const nuevaProduccion = {
+                id: Date.now().toString(),
+                titulo: this.titulo,
+                tipo: this.tipo,
+                fecha: this.fecha,
+                revista: this.revista,
+                autores: this.autores,
+                archivo: this.archivo.name,
+                subidoPor: usuarioActivo
+            };
 
-    alert(`✔️ Registro guardado correctamente\nSubido por: ${usuarioActivo}`);
+            let producciones = JSON.parse(localStorage.getItem("producciones")) || [];
+            producciones.push(nuevaProduccion);
+            localStorage.setItem("producciones", JSON.stringify(producciones));
 
-    document.getElementById("registroForm").reset();
-    mensajeError.textContent = "";
-    return false;
-}
-        document.addEventListener("DOMContentLoaded", () => {
-        const tema = localStorage.getItem("tema") || "claro";
-        if (tema === "oscuro") {
-            document.body.classList.add("dark-mode");
-        } else {
-            document.body.classList.remove("dark-mode");
+            alert(`✔️ Registro guardado correctamente\nSubido por: ${usuarioActivo}`);
+
+            // limpiar formulario
+            this.titulo = "";
+            this.tipo = "";
+            this.fecha = "";
+            this.revista = "";
+            this.autores = "";
+            this.archivo = null;
+            this.mensajeError = "";
         }
-        });
- 
+    },
+    mounted() {
+        const tema = localStorage.getItem("tema") || "claro";
+        document.body.classList.toggle("dark-mode", tema === "oscuro");
+    }
+}).mount("#app");
