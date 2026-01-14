@@ -1,34 +1,41 @@
-function validarFormulario() {
-    const correo = document.getElementById("correo").value.trim();
-    const contrasena = document.getElementById("contrasena").value.trim();
-    const mensajeError = document.getElementById("mensajeError");
+const { createApp } = Vue;
 
-    // Validaciones de los campos
-    if (correo === "" || contrasena === "") {
-        mensajeError.textContent = "Por favor, complete todos los campos.";
-        return false;
+createApp({
+  data() {
+    return {
+      correo: "",
+      contrasena: "",
+      mensajeError: ""
+    };
+  },
+
+  methods: {
+    iniciarSesion() {
+      // Validación campos vacíos
+      if (!this.correo || !this.contrasena) {
+        this.mensajeError = "Por favor, complete todos los campos.";
+        return;
+      }
+
+      // Validación correo institucional
+      const regexCorreo = /^[a-zA-Z0-9._%+-]+@live\.uleam\.edu\.ec$/;
+      if (!regexCorreo.test(this.correo)) {
+        this.mensajeError =
+          "Debe ingresar un correo institucional válido (@live.uleam.edu.ec).";
+        return;
+      }
+
+      // Guardar usuario activo
+      localStorage.setItem("usuarioActivo", this.correo);
+
+      // Redirigir
+      window.location.href = "index5.html";
     }
+  },
 
-    // Validaciones del coreeo
-    const regexCorreo = /^[a-zA-Z0-9._%+-]+@live\.uleam\.edu\.ec$/;
-    if (!regexCorreo.test(correo)) {
-        mensajeError.textContent = "Debe ingresar un correo institucional válido (@live.uleam.edu.ec).";
-        return false;
-    }
-
-    // guarda el usuario de session para ver que subio 
-    localStorage.setItem("usuarioActivo", correo);
-
-    
-    window.location.href = "index5.html";
-    return false; 
-}
-
- document.addEventListener("DOMContentLoaded", () => {
-        const tema = localStorage.getItem("tema") || "claro";
-        if (tema === "oscuro") {
-            document.body.classList.add("dark-mode");
-        } else {
-            document.body.classList.remove("dark-mode");
-        }
-        });
+  mounted() {
+    // 🌙 Aplicar tema guardado
+    const tema = localStorage.getItem("tema") || "claro";
+    document.body.classList.toggle("dark-mode", tema === "oscuro");
+  }
+}).mount("#app");

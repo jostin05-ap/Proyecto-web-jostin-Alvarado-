@@ -1,39 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio de Sesión - Producción Científica ULEAM</title>
-    <link rel="stylesheet" href="style.css">
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio de Sesión - Producción Científica ULEAM</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
-    <div class="login-container">
-        <img src="https://www.uleam.edu.ec/wp-content/uploads/2012/09/LOGO-ULEAM-VERTICAL.png" alt="Logo ULEAM" class="logo">
 
-        <form id="loginForm" onsubmit="return validarFormulario()">
-            <div class="input-group">
-                <label for="correo">Correo Institucional</label>
-                <input type="email" id="correo" name="correo" placeholder="usuario@live.uleam.edu.ec" required>
-            </div>
+<div id="app" class="login-container">
 
-            <div class="input-group">
-                <label for="contrasena">Contraseña</label>
-                <input type="password" id="contrasena" name="contrasena" placeholder="Ingrese su contraseña" required>
-            </div>
+  <img src="https://www.uleam.edu.ec/wp-content/uploads/2012/09/LOGO-ULEAM-VERTICAL.png"
+       alt="Logo ULEAM" class="logo">
 
-            <button type="submit">Iniciar Sesión</button>
-            <p class="mensaje-error" id="mensajeError"></p>
-        </form>
-
-        <!-- 🔹 Enlace nuevo a registro -->
-         <div class="registro-link">
-            <p>¿No tienes una cuenta?</p>
-            <a href="index7.html" class="btn-registrar">Registrar Usuario</a>
-        </div>
-
+  <form @submit.prevent="iniciarSesion">
+    <div class="input-group">
+      <label>Correo Institucional</label>
+      <input type="email"
+             v-model="correo"
+             placeholder="usuario@live.uleam.edu.ec"
+             required>
     </div>
 
-    <script src="script.js"></script>
+    <div class="input-group">
+      <label>Contraseña</label>
+      <input type="password"
+             v-model="contrasena"
+             placeholder="Ingrese su contraseña"
+             required>
+    </div>
+
+    <button type="submit">Iniciar Sesión</button>
+    <p class="mensaje-error">{{ mensajeError }}</p>
+  </form>
+
+  <div class="registro-link">
+    <p>¿No tienes una cuenta?</p>
+    <a href="index7.html" class="btn-registrar">Registrar Usuario</a>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
