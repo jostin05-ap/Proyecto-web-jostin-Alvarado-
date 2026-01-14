@@ -7,6 +7,7 @@ createApp({
             tipo: "",
             fecha: "",
             revista: "",
+            paginas: "",
             autores: "",
             archivo: null,
             mensajeError: ""
@@ -20,7 +21,7 @@ createApp({
         validarFormulario() {
             const regexTexto = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ.,;:()\- ]+$/;
 
-            if (!this.titulo || !this.tipo || !this.fecha || !this.revista || !this.autores || !this.archivo) {
+            if (!this.titulo || !this.tipo || !this.fecha || !this.revista || !this.paginas || !this.autores || !this.archivo) {
                 this.mensajeError = "Todos los campos son obligatorios.";
                 return;
             }
@@ -49,6 +50,7 @@ createApp({
                 tipo: this.tipo,
                 fecha: this.fecha,
                 revista: this.revista,
+                paginas: this.paginas,
                 autores: this.autores,
                 archivo: this.archivo.name,
                 subidoPor: usuarioActivo
@@ -65,6 +67,7 @@ createApp({
             this.tipo = "";
             this.fecha = "";
             this.revista = "";
+            this.paginas = "";
             this.autores = "";
             this.archivo = null;
             this.mensajeError = "";
