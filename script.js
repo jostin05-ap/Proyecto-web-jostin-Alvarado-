@@ -11,13 +11,12 @@ createApp({
 
   methods: {
     iniciarSesion() {
-      // Validación campos vacíos
+
       if (!this.correo || !this.contrasena) {
         this.mensajeError = "Por favor, complete todos los campos.";
         return;
       }
 
-      // Validación correo institucional
       const regexCorreo = /^[a-zA-Z0-9._%+-]+@live\.uleam\.edu\.ec$/;
       if (!regexCorreo.test(this.correo)) {
         this.mensajeError =
@@ -25,16 +24,30 @@ createApp({
         return;
       }
 
-      // Guardar usuario activo
-      localStorage.setItem("usuarioActivo", this.correo);
+      const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-      // Redirigir
+      if (usuarios.length === 0) {
+        this.mensajeError = "No existen usuarios registrados. Cree una cuenta primero.";
+        return;
+      }
+
+      const usuarioValido = usuarios.find(
+        u => u.correo === this.correo && u.contrasena === this.contrasena
+      );
+
+      if (!usuarioValido) {
+        this.mensajeError = "Correo o contraseña incorrectos.";
+        return;
+      }
+
+      // ✅ SOLO EL NOMBRE
+      localStorage.setItem("usuarioActivo", usuarioValido.nombre);
+
       window.location.href = "index5.html";
     }
   },
 
   mounted() {
-    // 🌙 Aplicar tema guardado
     const tema = localStorage.getItem("tema") || "claro";
     document.body.classList.toggle("dark-mode", tema === "oscuro");
   }

@@ -26,11 +26,16 @@ createApp({
                 return;
             }
 
-            if (!regexTexto.test(this.titulo) || !regexTexto.test(this.revista) || !regexTexto.test(this.autores)) {
+            if (
+                !regexTexto.test(this.titulo) ||
+                !regexTexto.test(this.revista) ||
+                !regexTexto.test(this.autores)
+            ) {
                 this.mensajeError = "Campos contienen caracteres inválidos.";
                 return;
             }
-             if (!/^(\d+|\d+\s*-\s*\d+)$/.test(this.paginas)) {
+
+            if (!/^(\d+|\d+\s*-\s*\d+)$/.test(this.paginas)) {
                 this.mensajeError = "Páginas inválidas. Use un número o un rango (ej: 10-20).";
                 return;
             }
@@ -46,6 +51,7 @@ createApp({
                 return;
             }
 
+            // ✅ SOLO EL NOMBRE DEL USUARIO LOGUEADO
             const usuarioActivo = localStorage.getItem("usuarioActivo") || "Usuario desconocido";
 
             const nuevaProduccion = {
@@ -66,7 +72,6 @@ createApp({
 
             alert(`✔️ Registro guardado correctamente\nSubido por: ${usuarioActivo}`);
 
-            // limpiar formulario
             this.titulo = "";
             this.tipo = "";
             this.fecha = "";
