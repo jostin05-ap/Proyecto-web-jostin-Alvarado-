@@ -30,6 +30,10 @@ createApp({
                 this.mensajeError = "Campos contienen caracteres inválidos.";
                 return;
             }
+             if (!/^(\d+|\d+\s*-\s*\d+)$/.test(this.paginas)) {
+                this.mensajeError = "Páginas inválidas. Use un número o un rango (ej: 10-20).";
+                return;
+            }
 
             if (this.archivo.type !== "application/pdf") {
                 this.mensajeError = "El archivo debe ser un PDF.";
